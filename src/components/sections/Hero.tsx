@@ -41,9 +41,7 @@ const Hero = ({ logo }: HeroProps) => {
             <ArrowDown className="w-4 h-4" />
           </a>
           <a
-            href="https://wa.me/573000000000"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#agendar"
             className="inline-flex items-center gap-2 border-2 border-cream/30 text-cream font-semibold px-8 py-4 rounded-full hover:bg-cream/10 transition-all hover:scale-105"
           >
             <Phone className="w-4 h-4" />

@@ -6,6 +6,7 @@ import ServicesGrid from "@/components/sections/ServicesGrid";
 import WhyUs from "@/components/sections/WhyUs";
 import Populations from "@/components/sections/Populations";
 import Convenios from "@/components/sections/Convenios";
+import AppointmentForm from "@/components/sections/AppointmentForm";
 import CTASection from "@/components/sections/CTASection";
 import Footer from "@/components/sections/Footer";
 import LogoSelector from "@/components/sections/LogoSelector";
@@ -24,6 +25,7 @@ const Index = () => {
       <WhyUs />
       <Populations />
       <Convenios />
+      <AppointmentForm />
       <CTASection />
       <Footer logo={selectedLogo} />
     </main>
