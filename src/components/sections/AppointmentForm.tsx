@@ -36,25 +36,42 @@ const AppointmentForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
+    setError("");
 
-    const subject = encodeURIComponent(
-      `Nueva cita – ${formData.service} con ${formData.specialist}`
-    );
-    const body = encodeURIComponent(
-      `Nombre: ${formData.name}\nCorreo: ${formData.email}\nTeléfono: ${formData.phone}\nEspecialista: ${formData.specialist}\nServicio: ${formData.service}\nMensaje: ${formData.message}`
-    );
+    try {
+      const resp = await fetch("http://165.227.72.60:3002/api/audible/cita", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          secret: "audible-bridge-2026",
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          specialist: formData.specialist,
+          service: formData.service,
+          message: formData.message,
+        }),
+      });
 
-    window.location.href = `mailto:citas@audible.co?subject=${subject}&body=${body}`;
+      const data = await resp.json();
 
-    setTimeout(() => {
+      if (resp.ok && data.ok) {
+        setSent(true);
+        setFormData({ name: "", email: "", phone: "", specialist: "", service: "", message: "" });
+        setTimeout(() => setSent(false), 5000);
+      } else {
+        setError(data.error || "Error al enviar la solicitud. Intenta de nuevo.");
+      }
+    } catch {
+      setError("No se pudo conectar. Por favor llama al 310 414 6037.");
+    } finally {
       setSending(false);
-      setSent(true);
-      setFormData({ name: "", email: "", phone: "", specialist: "", service: "", message: "" });
-      setTimeout(() => setSent(false), 4000);
-    }, 1000);
+    }
   };
 
   return (
@@ -222,9 +239,11 @@ const AppointmentForm = () => {
               )}
             </button>
 
+            {error && (
+              <p className="text-center text-sm text-coral">{error}</p>
+            )}
             <p className="text-center text-xs text-muted-foreground">
-              Se abrirá tu cliente de correo para enviar la solicitud a{" "}
-              <span className="font-semibold text-primary">citas@audible.co</span>
+              Recibirás confirmación por WhatsApp al número que ingreses
             </p>
           </form>
         </div>
