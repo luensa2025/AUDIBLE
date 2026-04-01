@@ -16,9 +16,10 @@ const Footer = ({ logo }: FooterProps) => {
           </div>
 
           <div className="text-center md:text-right space-y-1 text-sm">
+            <p>Holguines Trade Center, Cra 100 #11-60</p>
             <p>Cali, Valle del Cauca, Colombia</p>
-            <p>contacto@audiocare.com.co</p>
-            <p>Tel: (+57) 300 000 0000</p>
+            <p>citas@audible.co</p>
+            <p>Tel: (+57) 310 414 6037</p>
           </div>
         </div>
 

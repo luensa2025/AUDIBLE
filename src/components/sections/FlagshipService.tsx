@@ -54,7 +54,7 @@ const FlagshipService = () => {
               ))}
             </div>
             <a
-              href="https://wa.me/573000000000?text=Hola,%20quiero%20agendar%20un%20tamizaje%20auditivo%20neonatal"
+              href="https://wa.me/573104146037?text=Hola,%20quiero%20agendar%20un%20tamizaje%20auditivo%20neonatal"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-warm text-deep font-bold px-8 py-4 rounded-full hover:bg-warm/90 transition-all hover:scale-105 shadow-lg mt-2"

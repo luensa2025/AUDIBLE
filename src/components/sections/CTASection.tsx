@@ -16,7 +16,7 @@ const CTASection = () => {
           </p>
 
           <a
-            href="https://wa.me/573000000000?text=Hola,%20quiero%20agendar%20una%20cita"
+            href="https://wa.me/573104146037?text=Hola,%20quiero%20agendar%20una%20cita"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-warm text-deep font-bold px-10 py-5 rounded-full text-lg hover:bg-warm/90 transition-all hover:scale-105 shadow-2xl"
@@ -27,7 +27,7 @@ const CTASection = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-8 text-cream/50 text-sm">
             <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" /> Cali, Colombia
+              <MapPin className="w-4 h-4" /> Holguines Trade Center, Cra 100 #11-60, Cali
             </span>
             <span className="flex items-center gap-2">
               <Clock className="w-4 h-4" /> Lun–Vie 7:00am – 5:00pm
