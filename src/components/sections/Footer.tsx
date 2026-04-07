@@ -16,10 +16,19 @@ const Footer = ({ logo }: FooterProps) => {
           </div>
 
           <div className="text-center md:text-right space-y-1 text-sm">
-            <p>Holguines Trade Center, Cra 100 #11-60</p>
+            <p>BeOne Medical Work. Calle 15A 101-51, Ciudad Jardín</p>
             <p>Cali, Valle del Cauca, Colombia</p>
-            <p>citas@audible.co</p>
-            <p>Tel: (+57) 310 414 6037</p>
+            <p>Tel: (+57) 311 408 3525</p>
+            <p>
+              <a href="mailto:citas@audiocare.co" className="hover:text-cream transition-colors">
+                citas@audiocare.co
+              </a>
+            </p>
+            <p>
+              <a href="https://instagram.com/audiocare0" target="_blank" rel="noopener noreferrer" className="hover:text-cream transition-colors">
+                @audiocare0
+              </a>
+            </p>
           </div>
         </div>
 

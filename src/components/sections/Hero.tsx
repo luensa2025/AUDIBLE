@@ -23,12 +23,12 @@ const Hero = ({ logo }: HeroProps) => {
             Audiología Integral &bull; Cali, Colombia
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-display text-cream leading-tight">
-            Escuchamos tu salud,{" "}
-            <span className="text-warm italic">cuidamos tu audición</span>
+            Cuidamos tu audición,{" "}
+            <span className="text-warm italic">conectamos tu mundo</span>
           </h1>
           <p className="text-cream/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Centro de audiología especializado con más de una década de experiencia.
-            Diagnóstico, rehabilitación y acompañamiento para todas las edades.
+            Especialistas en tamizaje auditivo neonatal, evaluación auditiva
+            y soluciones auditivas personalizadas, adaptación e insumos para audífonos.
           </p>
         </div>
 

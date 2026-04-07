@@ -2,18 +2,19 @@ import { useState } from "react";
 import { CalendarDays, Send, User, Mail, Phone, FileText } from "lucide-react";
 import dianaIruritaImg from "@/assets/diana-irurita.jpg";
 import dianaJaramilloImg from "@/assets/diana-jaramillo.jpg";
+import elmerDiazImg from "@/assets/elmer-diaz.webp";
 
 const specialists = [
-  { name: "Elmer Díaz", title: "Fonoaudiólogo", photo: "/placeholder.svg" },
+  { name: "Elmer Díaz", title: "Fonoaudiólogo", photo: elmerDiazImg },
   { name: "Diana María Irurita", title: "Fonoaudióloga", photo: dianaIruritaImg },
   { name: "Diana Patricia Jaramillo", title: "Fonoaudióloga", photo: dianaJaramilloImg },
 ];
 
 const services = [
   "Diagnóstico Audiológico",
-  "Ayudas Auditivas",
+  "Audífonos e Insumos",
   "Audiología Pediátrica",
-  "Evaluación Vestibular",
+  "Tratamiento del Vértigo",
   "Fonoaudiología",
   "Audiología Ocupacional",
 ];
@@ -68,7 +69,7 @@ const AppointmentForm = () => {
         setError(data.error || "Error al enviar la solicitud. Intenta de nuevo.");
       }
     } catch {
-      setError("No se pudo conectar. Por favor llama al 310 414 6037.");
+      setError("No se pudo conectar. Por favor llama al 311 408 3525.");
     } finally {
       setSending(false);
     }

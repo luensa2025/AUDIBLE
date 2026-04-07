@@ -1,30 +1,33 @@
-import { Stethoscope, Ear, Baby, Activity, MessageCircle, Building2 } from "lucide-react";
+import { Stethoscope, MessageCircle, Building2 } from "lucide-react";
+import tamizajeImg from "@/assets/tamizaje-neonatal.webp";
+import audifonosImg from "@/assets/audifonos-widex.webp";
+import evaluacionImg from "@/assets/evaluacion-auditiva.webp";
+import vertigoImg from "@/assets/tratamiento-vertigo.webp";
 
-const services = [
+const servicesWithPhoto = [
   {
-    icon: Stethoscope,
-    title: "Diagnóstico Audiológico",
-    description: "Audiometría tonal, logoaudiometría, impedanciometría y emisiones otoacústicas con equipos de última generación.",
-    color: "bg-primary/10 text-primary",
+    title: "Tamizaje Auditivo Neonatal",
+    description: "Evaluamos cómo reacciona el bebé a los sonidos y detectamos posibles dificultades auditivas tempranas. Prueba rápida, segura y no invasiva.",
+    image: tamizajeImg,
   },
   {
-    icon: Ear,
-    title: "Ayudas Auditivas",
-    description: "Selección, adaptación y seguimiento de audífonos digitales. Alianzas con las mejores marcas mundiales.",
-    color: "bg-warm/20 text-accent-foreground",
+    title: "Audífonos e Insumos",
+    description: "Recupera tu audición y tu calidad de vida con dispositivos modernos, discretos y ajustados por profesionales, acordes a cada necesidad.",
+    image: audifonosImg,
   },
   {
-    icon: Baby,
-    title: "Audiología Pediátrica",
-    description: "Evaluación especializada para bebés y niños con técnicas adaptadas a cada edad y etapa del desarrollo.",
-    color: "bg-coral/10 text-coral",
+    title: "Evaluación Auditiva Integral",
+    description: "Valoramos el estado de tu audición para identificar pérdidas auditivas, condiciones metabólicas, visuales o cardiacas que requieren atención temprana.",
+    image: evaluacionImg,
   },
   {
-    icon: Activity,
-    title: "Evaluación Vestibular",
-    description: "Estudio completo del sistema del equilibrio: videonistagmografía, pruebas posicionales y rehabilitación vestibular.",
-    color: "bg-teal/10 text-teal",
+    title: "Tratamiento del Vértigo",
+    description: "Evaluación y manejo de trastornos del equilibrio. Determinamos la causa del vértigo y aplicamos procedimientos para su tratamiento.",
+    image: vertigoImg,
   },
+];
+
+const servicesIconOnly = [
   {
     icon: MessageCircle,
     title: "Fonoaudiología",
@@ -51,13 +54,42 @@ const ServicesGrid = () => {
             Audiología integral para{" "}
             <span className="text-primary italic">todas las etapas</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Más de 6 líneas de servicio diseñadas para cubrir cada necesidad auditiva.
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            Estamos comprometidos con la salud auditiva de los vallecaucanos.
+            Ofrecemos servicios de detección, evaluación, diagnóstico e intervención
+            de posibles alteraciones de la audición en neonatos, niños, adolescentes y adultos.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
+        {/* Services with photos - 2x2 grid */}
+        <div className="grid sm:grid-cols-2 gap-6 mb-6">
+          {servicesWithPhoto.map((service) => (
+            <div
+              key={service.title}
+              className="group bg-card rounded-2xl border overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="h-48 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-display text-foreground mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Services with icons only - 2 columns */}
+        <div className="grid sm:grid-cols-2 gap-6">
+          {servicesIconOnly.map((service) => (
             <div
               key={service.title}
               className="group bg-card rounded-2xl border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
