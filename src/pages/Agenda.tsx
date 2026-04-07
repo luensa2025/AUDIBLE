@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, RefreshCw, Phone, Mail, Clock, CheckCircle, XCircle, AlertCircle, Lock, Eye, EyeOff } from "lucide-react";
 
-const BRIDGE_URL = "http://165.227.72.60:3002";
+const BRIDGE_URL = "";
 const BRIDGE_SECRET = "audible-bridge-2026";
 const AGENDA_PASSWORD = "AudioCare2026!";
 
@@ -55,7 +55,7 @@ const Agenda = () => {
   const fetchCitas = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${BRIDGE_URL}/api/audible/citas?secret=${BRIDGE_SECRET}`);
+      const res = await fetch(`/api/bridge/citas?secret=${BRIDGE_SECRET}`);
       const data = await res.json();
       if (data.ok) {
         setCitas(data.citas);
@@ -73,7 +73,7 @@ const Agenda = () => {
 
   const updateStatus = async (id: string, newStatus: string) => {
     try {
-      const res = await fetch(`${BRIDGE_URL}/api/audible/cita/${id}`, {
+      const res = await fetch(`/api/bridge/cita/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ secret: BRIDGE_SECRET, status: newStatus }),

@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/api/bridge/:path*", "destination": "http://165.227.72.60:3002/api/audible/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

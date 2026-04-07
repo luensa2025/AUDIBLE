@@ -45,7 +45,7 @@ const AppointmentForm = () => {
     setError("");
 
     try {
-      const resp = await fetch("http://165.227.72.60:3002/api/audible/cita", {
+      const resp = await fetch("/api/bridge/cita", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
