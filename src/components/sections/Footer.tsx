@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface FooterProps {
   logo: string;
 }
@@ -32,9 +34,18 @@ const Footer = ({ logo }: FooterProps) => {
           </div>
         </div>
 
-        <div className="border-t border-cream/10 mt-8 pt-8 text-center text-xs text-cream/40">
+        <div className="border-t border-cream/10 mt-8 pt-8 text-center text-xs text-cream/40 space-y-2">
+          <div className="flex justify-center gap-4">
+            <Link to="/politica-privacidad" className="hover:text-cream transition-colors underline">
+              Política de Privacidad
+            </Link>
+            <span>·</span>
+            <Link to="/terminos" className="hover:text-cream transition-colors underline">
+              Términos y Condiciones
+            </Link>
+          </div>
           <p>© {new Date().getFullYear()} AudioCare S.A.S. Todos los derechos reservados.</p>
-          <p className="mt-1">Centro de Audiología habilitado por la Secretaría de Salud Municipal de Cali.</p>
+          <p>Centro de Audiología habilitado por la Secretaría de Salud Municipal de Cali.</p>
         </div>
       </div>
     </footer>
