@@ -7,9 +7,10 @@ import WhyUs from "@/components/sections/WhyUs";
 import Populations from "@/components/sections/Populations";
 import Convenios from "@/components/sections/Convenios";
 import AppointmentForm from "@/components/sections/AppointmentForm";
+import GoogleReviews from "@/components/sections/GoogleReviews";
 import CTASection from "@/components/sections/CTASection";
 import Footer from "@/components/sections/Footer";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-audiocare.webp";
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <FlagshipService />
       <AboutUs />
       <WhyUs />
+      <GoogleReviews />
       <Populations />
       <Convenios />
       <AppointmentForm />

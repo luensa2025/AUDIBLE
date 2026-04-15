@@ -38,9 +38,15 @@ const AppointmentForm = () => {
   };
 
   const [error, setError] = useState("");
+  const [showSpecialistError, setShowSpecialistError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.specialist) {
+      setShowSpecialistError(true);
+      return;
+    }
+    setShowSpecialistError(false);
     setSending(true);
     setError("");
 
@@ -91,163 +97,147 @@ const AppointmentForm = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
-          {/* Specialists sidebar */}
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className="text-lg font-display text-foreground mb-4 flex items-center gap-2">
+        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto space-y-6">
+          {/* Specialist selection inline */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-display text-foreground flex items-center gap-2">
               <User className="w-5 h-5 text-primary" />
-              Nuestros Especialistas
+              Elige tu especialista
             </h3>
-            {specialists.map((spec) => (
-              <button
-                key={spec.name}
-                type="button"
-                onClick={() => setFormData({ ...formData, specialist: spec.name })}
-                className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 ${
-                  formData.specialist === spec.name
-                    ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
-                    : "border-border bg-card hover:border-primary/30 hover:shadow-md"
-                }`}
-              >
-                <div className="flex items-center gap-4">
-                  {spec.photo ? (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {specialists.map((spec) => (
+                <button
+                  key={spec.name}
+                  type="button"
+                  onClick={() => { setFormData({ ...formData, specialist: spec.name }); setShowSpecialistError(false); }}
+                  className={`text-left p-4 rounded-2xl border transition-all duration-300 ${
+                    formData.specialist === spec.name
+                      ? "border-primary bg-primary/5 shadow-lg scale-[1.02]"
+                      : "border-border bg-card hover:border-primary/30 hover:shadow-md"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
                     <img
                       src={spec.photo}
                       alt={spec.name}
-                      className={`w-12 h-12 rounded-full object-cover border-2 ${
+                      className={`w-11 h-11 rounded-full object-cover border-2 ${
                         formData.specialist === spec.name
                           ? "border-primary"
                           : "border-transparent"
                       }`}
                     />
-                  ) : (
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-                        formData.specialist === spec.name
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                    >
-                      {spec.name.charAt(0)}
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground text-sm leading-tight">{spec.name}</p>
+                      <p className="text-xs text-muted-foreground">{spec.title}</p>
                     </div>
-                  )}
-                  <div>
-                    <p className="font-semibold text-foreground">{spec.name}</p>
-                    <p className="text-sm text-muted-foreground">{spec.title}</p>
                   </div>
-                </div>
-              </button>
-            ))}
+                </button>
+              ))}
+            </div>
+            {showSpecialistError && (
+              <p className="text-sm text-coral flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-coral inline-block" />
+                Selecciona un especialista para continuar
+              </p>
+            )}
           </div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="lg:col-span-3 space-y-5">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="relative">
-                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Nombre completo"
-                  className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-                />
-              </div>
-              <div className="relative">
-                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  placeholder="Teléfono / WhatsApp"
-                  className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
-                />
-              </div>
-            </div>
-
+          <div className="grid sm:grid-cols-2 gap-4">
             <div className="relative">
-              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
-                type="email"
-                name="email"
-                value={formData.email}
+                type="text"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder="Correo electrónico"
+                placeholder="Nombre completo"
                 className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
               />
             </div>
-
             <div className="relative">
-              <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <select
-                name="service"
-                value={formData.service}
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="tel"
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 required
-                className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all appearance-none cursor-pointer"
-              >
-                <option value="" disabled>
-                  Seleccionar servicio
-                </option>
-                {services.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Hidden specialist field for validation */}
-            <input type="hidden" name="specialist" value={formData.specialist} />
-            {!formData.specialist && (
-              <p className="text-sm text-coral flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-coral inline-block" />
-                Selecciona un especialista de la lista
-              </p>
-            )}
-
-            <div className="relative">
-              <FileText className="absolute left-4 top-4 w-4 h-4 text-muted-foreground" />
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={3}
-                placeholder="Mensaje adicional (opcional)"
-                className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
+                placeholder="Teléfono / WhatsApp"
+                className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
               />
             </div>
+          </div>
 
-            <button
-              type="submit"
-              disabled={!formData.specialist || sending}
-              className="w-full inline-flex items-center justify-center gap-3 bg-warm text-deep font-bold px-8 py-4 rounded-full hover:bg-warm/90 transition-all hover:scale-[1.02] shadow-lg disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed text-lg"
+          <div className="relative">
+            <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Correo electrónico"
+              className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+            />
+          </div>
+
+          <div className="relative">
+            <CalendarDays className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <select
+              name="service"
+              value={formData.service}
+              onChange={handleChange}
+              required
+              className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all appearance-none cursor-pointer"
             >
-              {sending ? (
-                "Enviando..."
-              ) : sent ? (
-                "¡Solicitud enviada!"
-              ) : (
-                <>
-                  <Send className="w-5 h-5" />
-                  Solicitar Cita
-                </>
-              )}
-            </button>
+              <option value="" disabled>
+                Seleccionar servicio
+              </option>
+              {services.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </div>
 
-            {error && (
-              <p className="text-center text-sm text-coral">{error}</p>
+          <div className="relative">
+            <FileText className="absolute left-4 top-4 w-4 h-4 text-muted-foreground" />
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={3}
+              placeholder="Mensaje adicional (opcional)"
+              className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={sending}
+            className="w-full inline-flex items-center justify-center gap-3 bg-warm text-deep font-bold px-8 py-4 rounded-full hover:bg-warm/90 transition-all hover:scale-[1.02] shadow-lg disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed text-lg"
+          >
+            {sending ? (
+              "Enviando..."
+            ) : sent ? (
+              "¡Solicitud enviada!"
+            ) : (
+              <>
+                <Send className="w-5 h-5" />
+                Solicitar Cita
+              </>
             )}
-            <p className="text-center text-xs text-muted-foreground">
-              Recibirás confirmación por WhatsApp al número que ingreses
-            </p>
-          </form>
-        </div>
+          </button>
+
+          {error && (
+            <p className="text-center text-sm text-coral">{error}</p>
+          )}
+          <p className="text-center text-xs text-muted-foreground">
+            Recibirás confirmación por WhatsApp al número que ingreses
+          </p>
+        </form>
       </div>
     </section>
   );

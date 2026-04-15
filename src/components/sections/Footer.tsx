@@ -27,7 +27,7 @@ const Footer = ({ logo }: FooterProps) => {
               </a>
             </p>
             <p>
-              <a href="https://instagram.com/audiocare0" target="_blank" rel="noopener noreferrer" className="hover:text-cream transition-colors">
+              <a href="https://www.instagram.com/audiocare0" target="_blank" rel="noopener noreferrer" className="hover:text-cream transition-colors">
                 @audiocare0
               </a>
             </p>
